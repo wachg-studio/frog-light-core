@@ -1,0 +1,25 @@
+{
+  "name": "flc-ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.8.3",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "svelte": "^5.0.0",
+    "vite": "^6.0.0"
+  },
+  "license": "GPL-3.0-only",
+  "author": "蛙创 Studio",
+  "description": "FLC (Frog Light Core) — 快、稳、好看的 Minecraft Java 版启动器"
+}

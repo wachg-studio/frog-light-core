@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: 安装前端依赖
+        run: npm ci
+
+      - name: 构建界面
+        run: npm run build
+
+      - name: Rust 测试
+        run: cargo test --workspace --locked
+
+      - name: 检查界面语言文件
+        shell: bash
+        run: |
+          for c in en zh-TW ja ko ru de fr es pt-BR it tr vi pl uk id; do
+            node tools/check-locale.mjs "$c"
+          done

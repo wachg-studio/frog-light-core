@@ -1,0 +1,59 @@
+name: Release
+
+# 推送形如 v0.1.0 的 tag 时构建 Windows 版并发布到 GitHub Releases
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: 检查界面语言文件
+        shell: bash
+        run: |
+          for c in en zh-TW ja ko ru de fr es pt-BR it tr vi pl uk id; do
+            node tools/check-locale.mjs "$c"
+          done
+
+      - name: Rust 测试
+        run: cargo test --workspace --locked
+
+      # tauri build 会自动内置界面（custom-protocol），并用 NSIS 打出中文安装向导
+      # FLC_MS_CLIENT_ID 是微软登录用的应用 ID，在仓库的 Secrets 里配置；没配置也能构建，只是用户要自己填
+      - name: 构建发布版和安装包
+        env:
+          FLC_MS_CLIENT_ID: ${{ secrets.FLC_MS_CLIENT_ID }}
+        run: npx tauri build
+
+      - name: 整理产物
+        shell: bash
+        run: |
+          mkdir dist
+          cp target/release/bundle/nsis/*-setup.exe "dist/FLC-${GITHUB_REF_NAME}-windows-x64-setup.exe"
+          cp target/release/flc-app.exe "dist/FLC-${GITHUB_REF_NAME}-windows-x64-portable.exe"
+          cd dist
+          sha256sum *.exe > SHA256SUMS.txt
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.exe
+            dist/SHA256SUMS.txt
+          generate_release_notes: true

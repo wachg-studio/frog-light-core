@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "FLC",
+  "version": "0.1.0",
+  "identifier": "app.froglight.flc",
+  "build": {
+    "frontendDist": "../ui/dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "FLC",
+        "width": 1000,
+        "height": 640,
+        "minWidth": 820,
+        "minHeight": 540,
+        "center": true,
+        "decorations": false,
+        "transparent": true,
+        "shadow": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "publisher": "蛙创 Studio",
+    "copyright": "© 2026 蛙创 Studio",
+    "category": "Game",
+    "shortDescription": "FLC · 快、稳、好看的 Minecraft Java 版启动器",
+    "longDescription": "FLC (Frog Light Core) 是一款快、稳、好看的 Minecraft Java 版启动器。",
+    "licenseFile": "../LICENSE",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "languages": [
+          "SimpChinese"
+        ],
+        "displayLanguageSelector": false,
+        "installMode": "currentUser",
+        "installerIcon": "icons/icon.ico",
+        "sidebarImage": "installer/sidebar.bmp",
+        "headerImage": "installer/header.bmp",
+        "startMenuFolder": "FLC"
+      }
+    }
+  }
+}
