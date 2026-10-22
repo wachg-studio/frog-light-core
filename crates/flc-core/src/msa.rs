@@ -27,13 +27,22 @@ fn http() -> Result<reqwest::Client> {
     Ok(reqwest::Client::builder().user_agent(concat!("FLC/", env!("CARGO_PKG_VERSION"))).timeout(Duration::from_secs(25)).build()?)
 }
 
-/// 用户填的优先，其次是构建时内置的。
+/// 用户填的优先，其次是构建时内置的。空白一律当作没配置：
+/// CI 没设置 `FLC_MS_CLIENT_ID` 时环境变量是空字符串，不能把它当成有效的 Client ID 发给微软。
 pub fn client_id(user: &str) -> Result<String> {
+    resolve_client_id(user, DEFAULT_CLIENT_ID)
+}
+
+fn resolve_client_id(user: &str, built_in: Option<&str>) -> Result<String> {
     let user = user.trim();
     if !user.is_empty() {
         return Ok(user.to_string());
     }
-    DEFAULT_CLIENT_ID.map(str::to_string).ok_or_else(|| anyhow!("还没有配置微软登录的应用 Client ID。请在 设置 → 账号 里填写。"))
+    built_in
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .map(str::to_string)
+        .ok_or_else(|| anyhow!("还没有配置微软登录的应用 Client ID。请在 设置 → 账号 → 微软登录 Client ID 里填写自己的 ID。"))
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -321,6 +330,15 @@ pub async fn skin_of(data_dir: &Path, uuid: &str) -> Result<Option<(Vec<u8>, boo
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn blank_client_ids_are_never_used() {
+        assert!(resolve_client_id("", None).is_err());
+        assert!(resolve_client_id("", Some("")).is_err());
+        assert!(resolve_client_id("", Some("   ")).is_err());
+        assert_eq!(resolve_client_id("", Some(" built-in ")).unwrap(), "built-in");
+        assert_eq!(resolve_client_id(" user-id ", Some("built-in")).unwrap(), "user-id");
+    }
 
     #[test]
     fn poll_states_are_classified() {
