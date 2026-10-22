@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Vui lòng chọn instance',
   '还没有世界': 'Chưa có thế giới',
   '选择安装到哪些存档': 'Chọn các instance để cài vào',
+  '离线模式': 'Chế độ ngoại tuyến',
+  '输入密钥后启用': 'Nhập khóa để bật',
+  '启用': 'Bật',
+  '密钥不正确': 'Khóa không đúng',
+  '开发者选项': 'Tùy chọn nhà phát triển',
+  '测试功能': 'Tính năng thử nghiệm',
 };

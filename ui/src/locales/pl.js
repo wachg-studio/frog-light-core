@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Wybierz instancje',
   '还没有世界': 'Brak światów',
   '选择安装到哪些存档': 'Wybierz instancje do instalacji',
+  '离线模式': 'Tryb offline',
+  '输入密钥后启用': 'Wpisz klucz, aby włączyć',
+  '启用': 'Włącz',
+  '密钥不正确': 'Nieprawidłowy klucz',
+  '开发者选项': 'Opcje programisty',
+  '测试功能': 'Funkcje testowe',
 };

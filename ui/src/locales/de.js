@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Wähle eine Instanz aus',
   '还没有世界': 'Noch keine Welten',
   '选择安装到哪些存档': 'Wähle die Instanzen für die Installation aus',
+  '离线模式': 'Offline-Modus',
+  '输入密钥后启用': 'Key eingeben, um zu aktivieren',
+  '启用': 'Aktivieren',
+  '密钥不正确': 'Falscher Key',
+  '开发者选项': 'Entwickleroptionen',
+  '测试功能': 'Testfunktionen',
 };

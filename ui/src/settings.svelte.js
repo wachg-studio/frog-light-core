@@ -16,14 +16,29 @@ const defaults = {
   log: true, // 记录游戏日志
   skin: 'steve', // 当前皮肤的 id，见 skins.svelte.js
   afterLaunch: 'keep', // 游戏窗口出现后启动器怎么办：keep 不动 | minimize 最小化，游戏关闭后自动回来
-  accountType: 'offline', // offline | msa（微软正版）
+  accountType: 'msa', // offline | msa（微软正版）；离线模式未启用时固定为 msa
   accountId: '', // 选中的正版账号（玩家 UUID）
   msClientId: '', // 微软登录用的应用 Client ID；发布版可以构建时内置，留空则用内置的
+  offlineEnabled: false, // 离线模式：默认隐藏，在设置里输入密钥后启用
 };
+
+/** 启用离线模式需要输入的密钥的 SHA-256。密钥本身不写进仓库，只在发布者手里。 */
+const OFFLINE_HASH = '67ca6f1f941f6346b87ec57fe526a79529cb2eff171dd862df1f980036b654ea';
+
+export async function checkOfflineKey(input) {
+  const subtle = globalThis.crypto?.subtle;
+  if (!subtle) return false;
+  const data = new TextEncoder().encode(input.trim());
+  const digest = await subtle.digest('SHA-256', data);
+  const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+  return hex === OFFLINE_HASH;
+}
 
 function load() {
   try {
-    return { ...defaults, ...JSON.parse(localStorage.getItem(KEY) || '{}') };
+    const s = { ...defaults, ...JSON.parse(localStorage.getItem(KEY) || '{}') };
+    if (!s.offlineEnabled) s.accountType = 'msa';
+    return s;
   } catch {
     return { ...defaults };
   }

@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Lütfen profil seçin',
   '还没有世界': 'Henüz dünya yok',
   '选择安装到哪些存档': 'Kurulacak profilleri seçin',
+  '离线模式': 'Çevrimdışı mod',
+  '输入密钥后启用': 'Etkinleştirmek için anahtarı girin',
+  '启用': 'Etkinleştir',
+  '密钥不正确': 'Anahtar yanlış',
+  '开发者选项': 'Geliştirici seçenekleri',
+  '测试功能': 'Test özellikleri',
 };

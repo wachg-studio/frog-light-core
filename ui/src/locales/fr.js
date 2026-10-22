@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Choisissez des instances',
   '还没有世界': 'Aucun monde pour l\'instant',
   '选择安装到哪些存档': 'Choisir les instances où installer',
+  '离线模式': 'Mode hors ligne',
+  '输入密钥后启用': 'Saisissez la clé pour activer',
+  '启用': 'Activer',
+  '密钥不正确': 'Clé incorrecte',
+  '开发者选项': 'Options développeur',
+  '测试功能': 'Fonctions de test',
 };

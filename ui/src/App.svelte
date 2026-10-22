@@ -208,7 +208,7 @@
 
   async function launch() {
     if (!selected || launchBlocked) return;
-    if (settings.accountType === 'msa' && !settings.accountId) { loginOpen = true; return; }
+    if (isMsa && !settings.accountId) { loginOpen = true; return; }
     store.set('flc.name', name);
     phase = 'busy';
     ring = 0.02;
@@ -221,7 +221,7 @@
     crash = false;
     killed = false;
     logs = [];
-    const msa = settings.accountType === 'msa';
+    const msa = isMsa;
     try {
       await call('launch_game', { id: selected, name, account: msa ? settings.accountId : null, skin: msa ? null : await skinPayload(), settings: bs() });
     } catch (e) {
@@ -365,7 +365,8 @@
   let loginOpen = $state(false);
   let msSkin = $state(null); // 当前正版账号在 Mojang 那边的皮肤 { url, slim }
   const account = $derived(accounts.find((a) => a.id === settings.accountId));
-  const isMsa = $derived(settings.accountType === 'msa');
+  // 离线模式没启用时，界面只认微软正版登录，旧存档里留下的 offline 也当 msa 处理
+  const isMsa = $derived(!settings.offlineEnabled || settings.accountType === 'msa');
   const headUrl = $derived(isMsa ? (msSkin?.url ?? '/skins/steve.png') : skin.url);
 
   async function refreshAccounts() {
@@ -494,7 +495,9 @@
       <section class="home" aria-label={t('主页')}>
         <aside class="glass card">
           <div class="seg acct" role="tablist" aria-label={t('账号类型')}>
-            <button role="tab" class:on={!isMsa} aria-selected={!isMsa} disabled={phase !== 'idle'} onclick={() => (settings.accountType = 'offline')}>{t('离线')}</button>
+            {#if settings.offlineEnabled}
+              <button role="tab" class:on={!isMsa} aria-selected={!isMsa} disabled={phase !== 'idle'} onclick={() => (settings.accountType = 'offline')}>{t('离线')}</button>
+            {/if}
             <button role="tab" class:on={isMsa} aria-selected={isMsa} disabled={phase !== 'idle'} onclick={() => { settings.accountType = 'msa'; if (!accounts.length) loginOpen = true; }}>{t('正版')}</button>
           </div>
 

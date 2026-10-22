@@ -41,7 +41,6 @@
     home: ['assets/home.png', '主页：账号、存档和一个醒目的“启动游戏”', '主页：账号、当前存档和启动游戏按钮'],
     download: ['assets/download.png', '下载游戏：按系列归类，可顺便装加载器', '下载游戏：按系列归类，可顺便安装加载器'],
     browse: ['assets/browse.png', '模组与资源：Modrinth 搜索，装到哪些存档由你选', '模组与资源：搜索 Modrinth，选择装到哪些存档'],
-    skin: ['assets/skin.png', '更换皮肤：3D 预览，预设皮肤或导入自己的', '更换皮肤：3D 预览，使用预设或导入自己的皮肤'],
   };
   const shotImg = document.getElementById('shotImg');
   const shotCap = document.getElementById('shotCap');

@@ -35,9 +35,9 @@ Tauri 2 + Rust + Svelte · 安装包不到 16 MB · 16 种界面语言
 
 **加载器**：Fabric、Legacy Fabric、Quilt、Forge、NeoForge。
 
-**账号与皮肤**
-- 离线账号，支持换皮肤：3D 预览，导入自己的 64×64 皮肤，内置 Steve、Alex 等 9 个预设。
+**账号**
 - 微软正版登录（设备码方式，不需要内置浏览器；令牌用 Windows 系统加密保存）。需要配置应用 Client ID，见下文。
+- 启动器里直接显示正版账号的头像和皮肤。
 
 **更多细节**
 - 游戏异常退出后，从日志里认出常见原因（内存不足、Java 版本不对、模组冲突、显卡驱动……）并告诉你怎么办。
@@ -49,12 +49,9 @@ Tauri 2 + Rust + Svelte · 安装包不到 16 MB · 16 种界面语言
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/home.png" alt="主页" /><br /><sub><b>主页</b>：账号、存档和一个醒目的“启动游戏”</sub></td>
-    <td width="50%"><img src="docs/screenshots/download.png" alt="下载游戏" /><br /><sub><b>下载游戏</b>：按系列归类，可顺便装加载器</sub></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/screenshots/browse.png" alt="模组与资源" /><br /><sub><b>模组与资源</b>：Modrinth 搜索，装到哪些存档由你选</sub></td>
-    <td width="50%"><img src="docs/screenshots/skin.png" alt="更换皮肤" /><br /><sub><b>更换皮肤</b>：3D 预览，预设皮肤或导入自己的</sub></td>
+    <td width="33%"><img src="docs/screenshots/home.png" alt="主页" /><br /><sub><b>主页</b>：账号、存档和一个醒目的“启动游戏”</sub></td>
+    <td width="33%"><img src="docs/screenshots/download.png" alt="下载游戏" /><br /><sub><b>下载游戏</b>：按系列归类，可顺便装加载器</sub></td>
+    <td width="33%"><img src="docs/screenshots/browse.png" alt="模组与资源" /><br /><sub><b>模组与资源</b>：Modrinth 搜索，装到哪些存档由你选</sub></td>
   </tr>
 </table>
 
@@ -79,10 +76,6 @@ Tauri 2 + Rust + Svelte · 安装包不到 16 MB · 16 种界面语言
 - 发布自己的构建：构建时设置环境变量 `FLC_MS_CLIENT_ID`，ID 会内置进程序。
 
 怎么拿到 ID，见 [docs/构建与发布.md](docs/构建与发布.md)。
-
-### 皮肤是怎么生效的
-
-离线账号没有 Mojang 的皮肤服务可查，所以 FLC 把选中的皮肤打成一个资源包（`resourcepacks/flc-skin.zip`），覆盖游戏内置的默认皮肤。贴图一定是你选的，但手臂粗细（经典 / 纤细）由游戏按玩家 UUID 决定，FLC 管不到。正版账号直接使用你在 Mojang 那边的皮肤。
 
 ## 从源码构建
 

@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Pilih instans',
   '还没有世界': 'Belum ada dunia',
   '选择安装到哪些存档': 'Pilih instans tujuan instalasi',
+  '离线模式': 'Mode offline',
+  '输入密钥后启用': 'Masukkan kunci untuk mengaktifkan',
+  '启用': 'Aktifkan',
+  '密钥不正确': 'Kunci salah',
+  '开发者选项': 'Opsi pengembang',
+  '测试功能': 'Fitur uji',
 };

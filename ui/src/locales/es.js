@@ -414,4 +414,10 @@ export default {
   '请选择存档': 'Elige instancias',
   '还没有世界': 'Aún no hay mundos',
   '选择安装到哪些存档': 'Elige en qué instancias instalar',
+  '离线模式': 'Modo sin conexión',
+  '输入密钥后启用': 'Introduce la clave para activar',
+  '启用': 'Activar',
+  '密钥不正确': 'Clave incorrecta',
+  '开发者选项': 'Opciones de desarrollador',
+  '测试功能': 'Funciones de prueba',
 };

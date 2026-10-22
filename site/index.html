@@ -51,7 +51,7 @@
 
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="pulse"></span> v0.1.0 已发布</p>
+      <p class="eyebrow"><span class="pulse"></span> v0.1.1 已发布</p>
       <h1>快、稳、好看的<br><em>Minecraft</em> 启动器</h1>
       <p class="lede">版本、加载器、模组、账号，收进一个清爽的窗口。安装包只有 4.3 MB，点下启动，剩下的交给它。</p>
       <div class="hero-cta">
@@ -125,8 +125,8 @@
         <span class="card-ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
         </span>
-        <h3>账号与皮肤</h3>
-        <p>微软正版用设备码登录，不需要内置浏览器，令牌用 Windows 系统加密保存。离线账号支持 3D 皮肤预览、导入自己的 64×64 皮肤，内置 9 个预设。</p>
+        <h3>微软正版登录</h3>
+        <p>设备码方式登录，不需要内置浏览器，令牌用 Windows 系统加密保存。账号的头像和皮肤直接显示在启动器里。</p>
       </article>
 
       <article class="card reveal">
@@ -151,7 +151,6 @@
         <button class="shot-tab is-on" role="tab" aria-selected="true" data-shot="home" type="button">主页</button>
         <button class="shot-tab" role="tab" aria-selected="false" data-shot="download" type="button">下载游戏</button>
         <button class="shot-tab" role="tab" aria-selected="false" data-shot="browse" type="button">模组与资源</button>
-        <button class="shot-tab" role="tab" aria-selected="false" data-shot="skin" type="button">更换皮肤</button>
       </div>
       <figure class="shot-frame">
         <img id="shotImg" src="assets/home.png" alt="FLC 主页：账号、当前存档和启动游戏按钮" width="1501" height="963">
@@ -171,9 +170,9 @@
       <article class="dl-card reveal is-primary">
         <span class="badge">推荐</span>
         <h3>安装包</h3>
-        <p class="dl-meta">FLC-v0.1.0-windows-x64-setup.exe · 4.3 MB</p>
+        <p class="dl-meta">FLC-v0.1.1-windows-x64-setup.exe · 4.3 MB</p>
         <p>中文安装向导，装到当前用户目录，不需要管理员权限。带开始菜单和桌面快捷方式，缺少 WebView2 时会自动下载安装。</p>
-        <a class="btn btn-primary" href="https://github.com/wachg-studio/frog-light-core/releases/download/v0.1.0/FLC-v0.1.0-windows-x64-setup.exe">
+        <a class="btn btn-primary" href="https://github.com/wachg-studio/frog-light-core/releases/download/v0.1.1/FLC-v0.1.1-windows-x64-setup.exe">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>
           下载安装包
         </a>
@@ -181,9 +180,9 @@
 
       <article class="dl-card reveal">
         <h3>免安装版</h3>
-        <p class="dl-meta">FLC-v0.1.0-windows-x64-portable.exe · 15 MB</p>
+        <p class="dl-meta">FLC-v0.1.1-windows-x64-portable.exe · 15 MB</p>
         <p>双击即用，不写注册表。需要系统里已有 WebView2 运行时（Windows 11 自带，Windows 10 可能需要手动安装）。</p>
-        <a class="btn btn-ghost" href="https://github.com/wachg-studio/frog-light-core/releases/download/v0.1.0/FLC-v0.1.0-windows-x64-portable.exe">
+        <a class="btn btn-ghost" href="https://github.com/wachg-studio/frog-light-core/releases/download/v0.1.1/FLC-v0.1.1-windows-x64-portable.exe">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>
           下载免安装版
         </a>
@@ -200,8 +199,8 @@
         <p>微软要求登录程序使用在 Azure 注册、并通过 Minecraft 服务审核的应用 ID。自己用的话，在“设置 → 账号 → 微软登录 Client ID”里填自己的 ID 即可。</p>
       </div>
       <div class="note">
-        <h4>皮肤是怎么生效的</h4>
-        <p>离线账号没有 Mojang 的皮肤服务可查，FLC 会把选中的皮肤打成资源包覆盖默认皮肤。贴图一定是你选的，手臂粗细仍由游戏按玩家 UUID 决定。</p>
+        <h4>Java 不用自己装</h4>
+        <p>按版本自动匹配：1.16 以下 Java 8，1.17 用 16，1.18–1.20.4 用 17，1.20.5 之后用 21。缺了就直接下载合适的运行时。</p>
       </div>
     </div>
   </section>

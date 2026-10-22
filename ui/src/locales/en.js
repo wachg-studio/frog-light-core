@@ -415,4 +415,10 @@ export default {
   '请选择存档': 'Select instances',
   '还没有世界': 'No worlds yet',
   '选择安装到哪些存档': 'Choose which instances to install to',
+  '离线模式': 'Offline mode',
+  '输入密钥后启用': 'Enter the key to enable',
+  '启用': 'Enable',
+  '密钥不正确': 'Incorrect key',
+  '开发者选项': 'Developer options',
+  '测试功能': 'Test features',
 };

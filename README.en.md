@@ -35,9 +35,9 @@ Tauri 2 + Rust + Svelte · installer-free exe under 16 MB · 16 UI languages
 
 **Loaders**: Fabric, Legacy Fabric, Quilt, Forge, NeoForge.
 
-**Accounts and skins**
-- Offline accounts with skin switching: 3D preview, import your own 64×64 skin, nine built-in presets (Steve, Alex, …).
+**Account**
 - Microsoft sign-in via the device-code flow (no embedded browser; tokens are stored encrypted with Windows DPAPI). Needs an app Client ID — see below.
+- Your Microsoft account's avatar and skin are shown right in the launcher.
 
 **Details**
 - When the game crashes, FLC recognizes common causes from the log (out of memory, wrong Java, mod conflicts, GPU driver, …) and tells you what to do.
@@ -49,12 +49,9 @@ Tauri 2 + Rust + Svelte · installer-free exe under 16 MB · 16 UI languages
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/home.png" alt="Home" /><br /><sub><b>Home</b>: account, instance and one big Launch button</sub></td>
-    <td width="50%"><img src="docs/screenshots/download.png" alt="Download" /><br /><sub><b>Download</b>: grouped by series, install a loader on the way</sub></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/screenshots/browse.png" alt="Mods and content" /><br /><sub><b>Mods and content</b>: search Modrinth, choose which instances to install into</sub></td>
-    <td width="50%"><img src="docs/screenshots/skin.png" alt="Skins" /><br /><sub><b>Skins</b>: 3D preview, presets or import your own</sub></td>
+    <td width="33%"><img src="docs/screenshots/home.png" alt="Home" /><br /><sub><b>Home</b>: account, instance and one big Launch button</sub></td>
+    <td width="33%"><img src="docs/screenshots/download.png" alt="Download" /><br /><sub><b>Download</b>: grouped by series, install a loader on the way</sub></td>
+    <td width="33%"><img src="docs/screenshots/browse.png" alt="Mods and content" /><br /><sub><b>Mods and content</b>: search Modrinth, choose which instances to install into</sub></td>
   </tr>
 </table>
 
@@ -79,10 +76,6 @@ Microsoft requires every sign-in client to use an app ID registered in Azure and
 - For your own builds: set the `FLC_MS_CLIENT_ID` environment variable at build time and the ID is built in.
 
 How to get one: see [docs/构建与发布.md](docs/构建与发布.md) (Chinese).
-
-### How skins work
-
-Offline accounts have no Mojang skin service to query, so FLC packs the selected skin into a resource pack (`resourcepacks/flc-skin.zip`) that overrides the default skins. The texture is always the one you chose, but the arm width (classic / slim) is decided by the game from the player UUID. Microsoft accounts use the skin you have at Mojang.
 
 ## Build from source
 
