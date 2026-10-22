@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLC · Frog Light Core — 快、稳、好看的 Minecraft 启动器</title>
+<meta name="description" content="FLC 是一款快、稳、好看的 Minecraft Java 版启动器。4.3 MB 安装包，16 种界面语言，Modrinth 模组与整合包一站式管理。开源，GPL-3.0。">
+<meta name="theme-color" content="#0a0e0b">
+<link rel="canonical" href="https://wachg.xyz/flc/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wachg.xyz/flc/">
+<meta property="og:title" content="FLC · Frog Light Core">
+<meta property="og:description" content="快、稳、好看的 Minecraft Java 版启动器。安装包 4.3 MB，开源。">
+<meta property="og:image" content="https://wachg.xyz/flc/assets/icon.png">
+<link rel="icon" href="assets/icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+  <span class="grid"></span>
+</div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="FLC 首页">
+    <img src="assets/icon.png" alt="" width="36" height="36">
+    <span class="brand-name">FLC</span>
+    <span class="brand-sub">Frog Light Core</span>
+  </a>
+  <nav class="nav-links" id="navLinks" aria-label="主导航">
+    <a href="#features">功能</a>
+    <a href="#shots">界面</a>
+    <a href="#download">下载</a>
+    <a href="https://github.com/wachg-studio/frog-light-core" target="_blank" rel="noreferrer">GitHub</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="切换深浅色" title="切换深浅色">
+      <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.8 6.8 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <a class="btn btn-primary btn-sm" href="#download">下载</a>
+    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="navLinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="pulse"></span> v0.1.0 已发布</p>
+      <h1>快、稳、好看的<br><em>Minecraft</em> 启动器</h1>
+      <p class="lede">版本、加载器、模组、账号，收进一个清爽的窗口。安装包只有 4.3 MB，点下启动，剩下的交给它。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="https://github.com/wachg-studio/frog-light-core/releases/latest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>
+          下载 for Windows
+        </a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/wachg-studio/frog-light-core" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.7-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+          在 GitHub 查看
+        </a>
+      </div>
+      <p class="fineprint">Windows 10 / 11 · 免安装版可选 · 开源 GPL-3.0</p>
+      <dl class="stats">
+        <div><dt>4.3 <small>MB</small></dt><dd>安装包体积</dd></div>
+        <div><dt>16</dt><dd>种界面语言</dd></div>
+        <div><dt>5</dt><dd>种加载器</dd></div>
+        <div><dt>0</dt><dd>需要手动装的 Java</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero-visual">
+      <div class="window reveal">
+        <img src="assets/home.png" alt="FLC 主页：账号、当前存档和一个醒目的启动游戏按钮" width="1501" height="963">
+      </div>
+      <img class="float-icon" src="assets/icon.png" alt="" width="96" height="96" aria-hidden="true">
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-head reveal">
+      <p class="kicker">为什么是 FLC</p>
+      <h2>把麻烦的事留在背后</h2>
+      <p class="section-lede">启动器不该让你先学一遍 Minecraft 目录结构。FLC 的目标很简单：默认就好用，需要时能改。</p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <span class="card-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg>
+        </span>
+        <h3>存档，就是一整个游戏</h3>
+        <p>原版和它装的加载器合并成一条存档，不会一个版本显示两行。每个存档都能改名、换图标，有独立的内存、Java、JVM 参数和窗口大小，还能连同世界与模组一键复制。</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="card-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8.5 12 3 3 8.5v7L12 21l9-5.5v-7Z"/><path d="M3.3 8.7 12 13.7l8.7-5M12 13.7V21"/></svg>
+        </span>
+        <h3>Modrinth 一站式</h3>
+        <p>模组、整合包、光影、资源包、数据包五类内容都能搜。装模组前先看前置：已安装、将自动安装、找不到适配版本，必需的一键补齐；安装时自己勾选装到哪些存档。</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="card-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 9.5 4.5 4.5 4.5-4.5"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"/></svg>
+        </span>
+        <h3>下载更稳</h3>
+        <p>并发下载并校验文件完整性，官方源与 BMCLAPI 镜像自动竞速，失败自动换源。下载队列随时可以取消，右上角能看到正在下什么、接下来下什么。</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="card-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/><path d="m13.5 4-3 16"/></svg>
+        </span>
+        <h3>Java 不用自己装</h3>
+        <p>按版本自动匹配需要的 Java（1.16 以下 Java 8，1.17 用 16，1.18–1.20.4 用 17，1.20.5 之后用 21），缺了就自动下载合适的运行时。</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="card-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+        </span>
+        <h3>账号与皮肤</h3>
+        <p>微软正版用设备码登录，不需要内置浏览器，令牌用 Windows 系统加密保存。离线账号支持 3D 皮肤预览、导入自己的 64×64 皮肤，内置 9 个预设。</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="card-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 4 6.5v5c0 4.6 3.4 8.2 8 9.5 4.6-1.3 8-4.9 8-9.5v-5l-8-3Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg>
+        </span>
+        <h3>崩了也告诉你怎么修</h3>
+        <p>游戏异常退出后，它会从日志里认出常见原因：内存不足、Java 版本不对、模组冲突、显卡驱动，并用两句话说清楚发生了什么、接下来怎么办。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section shots" id="shots">
+    <div class="section-head reveal">
+      <p class="kicker">界面</p>
+      <h2>没有多余的一层菜单</h2>
+      <p class="section-lede">左侧一条图标导航，中间是内容。首屏永远只有一个“启动游戏”，其余按需出现。</p>
+    </div>
+
+    <div class="shot-wrap reveal">
+      <div class="shot-tabs" role="tablist" aria-label="界面截图">
+        <button class="shot-tab is-on" role="tab" aria-selected="true" data-shot="home" type="button">主页</button>
+        <button class="shot-tab" role="tab" aria-selected="false" data-shot="download" type="button">下载游戏</button>
+        <button class="shot-tab" role="tab" aria-selected="false" data-shot="browse" type="button">模组与资源</button>
+        <button class="shot-tab" role="tab" aria-selected="false" data-shot="skin" type="button">更换皮肤</button>
+      </div>
+      <figure class="shot-frame">
+        <img id="shotImg" src="assets/home.png" alt="FLC 主页：账号、当前存档和启动游戏按钮" width="1501" height="963">
+        <figcaption id="shotCap">主页：账号、存档和一个醒目的“启动游戏”</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="download">
+    <div class="section-head reveal">
+      <p class="kicker">下载</p>
+      <h2>挑一个，解压就能玩</h2>
+      <p class="section-lede">需要 Windows 10 / 11 x64。安装包会负责 WebView2 运行时，免安装版更省事。</p>
+    </div>
+
+    <div class="download-grid">
+      <article class="dl-card reveal is-primary">
+        <span class="badge">推荐</span>
+        <h3>安装包</h3>
+        <p class="dl-meta">FLC-v0.1.0-windows-x64-setup.exe · 4.3 MB</p>
+        <p>中文安装向导，装到当前用户目录，不需要管理员权限。带开始菜单和桌面快捷方式，缺少 WebView2 时会自动下载安装。</p>
+        <a class="btn btn-primary" href="https://github.com/wachg-studio/frog-light-core/releases/download/v0.1.0/FLC-v0.1.0-windows-x64-setup.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>
+          下载安装包
+        </a>
+      </article>
+
+      <article class="dl-card reveal">
+        <h3>免安装版</h3>
+        <p class="dl-meta">FLC-v0.1.0-windows-x64-portable.exe · 15 MB</p>
+        <p>双击即用，不写注册表。需要系统里已有 WebView2 运行时（Windows 11 自带，Windows 10 可能需要手动安装）。</p>
+        <a class="btn btn-ghost" href="https://github.com/wachg-studio/frog-light-core/releases/download/v0.1.0/FLC-v0.1.0-windows-x64-portable.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>
+          下载免安装版
+        </a>
+      </article>
+    </div>
+
+    <div class="notes reveal">
+      <div class="note">
+        <h4>没有代码签名</h4>
+        <p>Windows SmartScreen 可能提示“未知发布者”，点“更多信息 → 仍要运行”即可。请对照 Release 里的 <a href="https://github.com/wachg-studio/frog-light-core/releases/latest" target="_blank" rel="noreferrer">SHA256SUMS.txt</a> 校验下载的文件。</p>
+      </div>
+      <div class="note">
+        <h4>微软正版登录</h4>
+        <p>微软要求登录程序使用在 Azure 注册、并通过 Minecraft 服务审核的应用 ID。自己用的话，在“设置 → 账号 → 微软登录 Client ID”里填自己的 ID 即可。</p>
+      </div>
+      <div class="note">
+        <h4>皮肤是怎么生效的</h4>
+        <p>离线账号没有 Mojang 的皮肤服务可查，FLC 会把选中的皮肤打成资源包覆盖默认皮肤。贴图一定是你选的，手臂粗细仍由游戏按玩家 UUID 决定。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section open" id="open">
+    <div class="open-card reveal">
+      <div class="open-copy">
+        <p class="kicker">开源</p>
+        <h2>Tauri 2 + Rust + Svelte，代码都在 GitHub</h2>
+        <p>核心逻辑在 <code>flc-core</code>，不依赖任何界面，可以单独测试，也能被别的前端复用。界面是 Svelte 5，16 种语言的翻译都欢迎帮忙校对。</p>
+        <div class="open-links">
+          <a class="btn btn-primary" href="https://github.com/wachg-studio/frog-light-core" target="_blank" rel="noreferrer">查看源码</a>
+          <a class="btn btn-ghost" href="https://github.com/wachg-studio/frog-light-core/issues" target="_blank" rel="noreferrer">反馈问题</a>
+        </div>
+      </div>
+      <ul class="stack">
+        <li><span>Tauri 2</span><small>系统 WebView2，不打包 Chromium</small></li>
+        <li><span>Rust</span><small>下载、校验、启动参数拼装</small></li>
+        <li><span>Svelte 5</span><small>界面与动效</small></li>
+        <li><span>GPL-3.0</span><small>可自由使用、修改、分发</small></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq">
+    <div class="section-head reveal">
+      <p class="kicker">常见问题</p>
+      <h2>第一次用之前</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details>
+        <summary>第一次打开要做什么？</summary>
+        <p>去“下载游戏”选一个版本，可以顺便选加载器（Fabric、Legacy Fabric、Quilt、Forge、NeoForge），下载完成后回到主页点“启动游戏”。Java 会按版本自动准备。</p>
+      </details>
+      <details>
+        <summary>支持 Linux 或 macOS 吗？</summary>
+        <p>目前只发布 Windows x64。项目本身是跨平台的，但这一版没有为其他系统做打包和测试。</p>
+      </details>
+      <details>
+        <summary>启动失败怎么办？</summary>
+        <p>主页右侧会显示游戏日志。异常退出时 FLC 会尝试从日志里识别原因；也可以点“复制日志”把内容贴到 GitHub Issues 里。</p>
+      </details>
+      <details>
+        <summary>项目里为什么有 Mojang 的素材？</summary>
+        <p>为了用原版方块的模型和贴图渲染存档图标，以及显示默认皮肤和青蛙形象，项目里包含少量从 Minecraft 取出的素材。它们属于 Mojang Studios，不在 GPL 授权范围内，详见仓库里的 NOTICE.md。</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/icon.png" alt="" width="40" height="40">
+      <div>
+        <strong>FLC · Frog Light Core</strong>
+        <span>© 2026 蛙创 Studio · GPL-3.0</span>
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="页脚导航">
+      <a href="https://github.com/wachg-studio/frog-light-core" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://github.com/wachg-studio/frog-light-core/releases" target="_blank" rel="noreferrer">所有版本</a>
+      <a href="https://github.com/wachg-studio/frog-light-core/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">参与贡献</a>
+      <a href="https://github.com/wachg-studio/frog-light-core/blob/main/LICENSE" target="_blank" rel="noreferrer">许可证</a>
+      <a href="https://github.com/wachg-studio/frog-light-core/blob/main/README.en.md" target="_blank" rel="noreferrer">English</a>
+    </nav>
+  </div>
+  <p class="disclaimer">FLC 不是 Mojang Studios 或 Microsoft 的官方产品，与它们没有关联。Minecraft 是 Mojang Studios 的商标。</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

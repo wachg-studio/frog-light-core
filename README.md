@@ -8,7 +8,7 @@
 
 Tauri 2 + Rust + Svelte · 安装包不到 16 MB · 16 种界面语言
 
-[简体中文](README.md) · [English](README.en.md)
+[简体中文](README.md) · [English](README.en.md) · [官网](https://wachg.xyz/flc/)
 
 </div>
 
