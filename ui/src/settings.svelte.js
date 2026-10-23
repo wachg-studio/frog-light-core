@@ -22,17 +22,6 @@ const defaults = {
   offlineEnabled: false, // 离线模式：默认隐藏，在设置里输入密钥后启用
 };
 
-/** 启用离线模式需要输入的密钥的 SHA-256。密钥本身不写进仓库，只在发布者手里。 */
-const OFFLINE_HASH = '67ca6f1f941f6346b87ec57fe526a79529cb2eff171dd862df1f980036b654ea';
-
-export async function checkOfflineKey(input) {
-  const subtle = globalThis.crypto?.subtle;
-  if (!subtle) return false;
-  const data = new TextEncoder().encode(input.trim());
-  const digest = await subtle.digest('SHA-256', data);
-  const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
-  return hex === OFFLINE_HASH;
-}
 
 function load() {
   try {

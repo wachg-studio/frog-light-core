@@ -11,6 +11,7 @@
   import Select from './Select.svelte';
   import TaskPanel from './TaskPanel.svelte';
   import LoginDialog from './LoginDialog.svelte';
+  import OfflineDialog from './OfflineDialog.svelte';
   import { LOADER_NAMES } from './loaders.js';
   import { settings, save } from './settings.svelte.js';
   import { activeSkin, skinPayload } from './skins.svelte.js';
@@ -109,9 +110,22 @@
   const selectedInst = $derived(instances.find((i) => i.id === selected));
   const isInstalled = (id) => installed.includes(id);
   let skinOpen = $state(false);
+  let offlineOpen = $state(false);
   let browseKind = $state(store.get('flc.browseKind', 'mod'));
   let browseTarget = $state('*'); // “安装到”默认是全部存档
   const skin = $derived(activeSkin());
+  // 离线启动累计 5 次，提醒一次支持正版
+  let genuineTip = $state(false);
+  let genuineTimer;
+
+  function countLaunch() {
+    const n = Number(store.get('flc.launches', '0') || 0) + 1;
+    store.set('flc.launches', String(n));
+    if (n % 5 !== 0 || isMsa) return;
+    genuineTip = true;
+    clearTimeout(genuineTimer);
+    genuineTimer = setTimeout(() => (genuineTip = false), 15000);
+  }
 
   function onStarted() {
     phase = 'running';
@@ -124,6 +138,7 @@
     timers.push(setTimeout(() => { if (!ready && phase === 'running') tip = { k: '加载比较慢：首次启动、资源多或装了模组时，可能要一两分钟。窗口出现前请不要重复点击。' }; }, 15000));
     timers.push(setTimeout(() => { if (!ready && phase === 'running') tip = { k: '已经等了一分钟还没出现窗口，可能卡住了。打开日志看看有没有报错，或点“结束游戏”后重试。' }; }, 60000));
     refreshInstalled();
+    countLaunch();
   }
 
   let autoMinimized = false; // 游戏窗口出现后是不是我们帮用户最小化的（游戏关闭后要还原）
@@ -381,11 +396,19 @@
     loginOpen = false;
     settings.accountType = 'msa';
     settings.accountId = info.id;
+    // 登录过正版就永久解锁离线模式，以后断网也能玩
+    settings.offlineEnabled = true;
     refreshAccounts();
   }
   function onHeadClick() {
     if (isMsa) call('open_url', { url: 'https://www.minecraft.net/msaprofile/mygames/editskin' }).catch(() => {});
     else skinOpen = true;
+  }
+
+  // 没解锁就先过一遍离线模式说明，解锁后直接切过去
+  function pickOffline() {
+    if (settings.offlineEnabled) settings.accountType = 'offline';
+    else offlineOpen = true;
   }
   $effect(() => {
     const [type, id] = [settings.accountType, settings.accountId];
@@ -495,9 +518,7 @@
       <section class="home" aria-label={t('主页')}>
         <aside class="glass card">
           <div class="seg acct" role="tablist" aria-label={t('账号类型')}>
-            {#if settings.offlineEnabled}
-              <button role="tab" class:on={!isMsa} aria-selected={!isMsa} disabled={phase !== 'idle'} onclick={() => (settings.accountType = 'offline')}>{t('离线')}</button>
-            {/if}
+            <button role="tab" class:on={!isMsa} aria-selected={!isMsa} disabled={phase !== 'idle'} onclick={pickOffline}>{t('离线')}</button>
             <button role="tab" class:on={isMsa} aria-selected={isMsa} disabled={phase !== 'idle'} onclick={() => { settings.accountType = 'msa'; if (!accounts.length) loginOpen = true; }}>{t('正版')}</button>
           </div>
 
@@ -636,7 +657,7 @@
     {/if}
     {#if visited.settings}
     <div class="pg" class:off={page !== 'settings'}>
-      <Settings bind:panel={panels.settings} {defaultRoot} {defaultDataDir} {accounts} onSkin={() => (skinOpen = true)} onLogin={() => (loginOpen = true)} onRemoveAccount={removeAccount} />
+      <Settings bind:panel={panels.settings} {defaultRoot} {defaultDataDir} {accounts} onSkin={() => (skinOpen = true)} onLogin={() => (loginOpen = true)} onRemoveAccount={removeAccount} onOffline={() => (offlineOpen = true)} />
     </div>
     {/if}
   </main>
@@ -663,6 +684,10 @@
     <LoginDialog settings={bs} onDone={onLoggedIn} onClose={() => (loginOpen = false)} onSettings={() => (page = 'settings')} />
   {/if}
 
+  {#if offlineOpen}
+    <OfflineDialog onClose={() => (offlineOpen = false)} onDone={() => (offlineOpen = false)} />
+  {/if}
+
   {#if skinOpen}
     {#await loadSkinDialog() then { default: SkinDialog }}
       <SkinDialog onClose={() => (skinOpen = false)} />
@@ -673,5 +698,15 @@
     {#await loadFrogs then { default: FrogStage }}
       <FrogStage frog={SCENE_FROG[page]} anchor={panelEl} side={SIDE[page] ?? 'right'} mode={frogMode} />
     {/await}
+  {/if}
+
+  {#if genuineTip}
+    <div class="genuine glass" role="status">
+      <p>{t('如果喜欢 Minecraft，请支持正版。')}</p>
+      {#if !account}
+        <button class="mini" onclick={() => { genuineTip = false; loginOpen = true; }}>{t('登录微软账号')}</button>
+      {/if}
+      <button class="gx" aria-label={t('关闭')} title={t('关闭')} onclick={() => (genuineTip = false)}>×</button>
+    </div>
   {/if}
 </div>

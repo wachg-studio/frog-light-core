@@ -1,5 +1,5 @@
 <script>
-  import { settings, GAME_LANGS, checkOfflineKey } from './settings.svelte.js';
+  import { settings, GAME_LANGS } from './settings.svelte.js';
   import { t, LANGS } from './i18n.svelte.js';
   import { pickFolder, inTauri, call } from './api.js';
   import Select from './Select.svelte';
@@ -7,27 +7,7 @@
   import { activeSkin } from './skins.svelte.js';
   import { VERSION, DEVELOPER, LICENSE, REPO_URL } from './about.js';
 
-  let { panel = $bindable(null), defaultRoot = '', defaultDataDir = '', accounts = [], onSkin = () => {}, onLogin = () => {}, onRemoveAccount = () => {} } = $props();
-
-  // 离线模式藏得比较深：开发者选项 → 测试功能 → 其他 → 连点版本号 3 次，才出现密钥输入框。
-  let devOpen = $state(false);
-  let taps = $state(0);
-  let keyRow = $state(false);
-  let keyInput = $state('');
-  let keyErr = $state(false);
-
-  function tapVersion() {
-    if (keyRow || settings.offlineEnabled) return;
-    if (++taps >= 3) keyRow = true;
-  }
-
-  async function unlockOffline() {
-    if (!(await checkOfflineKey(keyInput))) { keyErr = true; return; }
-    settings.offlineEnabled = true;
-    keyErr = false;
-    keyInput = '';
-    keyRow = false;
-  }
+  let { panel = $bindable(null), defaultRoot = '', defaultDataDir = '', accounts = [], onSkin = () => {}, onLogin = () => {}, onRemoveAccount = () => {}, onOffline = () => {} } = $props();
 
   // 点“浏览”弹出系统资源管理器的文件夹选择框；取消则保持原值。
   async function browse(key, fallback) {
@@ -81,10 +61,26 @@
           <button class="mini" onclick={onSkin}>{t('更换皮肤')}</button>
         </div>
       {/if}
+      <div class="srow">
+        <span class="lbl">
+          <b>{t('离线模式')}</b>
+          {#if !settings.offlineEnabled}<small>{t('登录正版账号后会自动解锁离线模式，不需要答题')}</small>{/if}
+        </span>
+        {#if settings.offlineEnabled}
+          <label class="switch"><input type="checkbox" bind:checked={settings.offlineEnabled} /><i aria-hidden="true"></i></label>
+        {:else}
+          <button class="mini" onclick={onOffline}>{t('启用')}</button>
+        {/if}
+      </div>
       {#each accounts as a (a.id)}
         <div class="srow">
-          <span class="lbl"><b>{a.name}</b><small>{t('微软账号')}</small></span>
-          <button class="mini danger" onclick={() => onRemoveAccount(a.id)}>{t('退出登录')}</button>
+          <span class="lbl"><b>{a.name}</b><small>{a.id === settings.accountId ? t('当前') : t('微软账号')}</small></span>
+          <span class="aacts">
+            {#if a.id !== settings.accountId}
+              <button class="mini" onclick={() => { settings.accountId = a.id; settings.accountType = 'msa'; }}>{t('切换')}</button>
+            {/if}
+            <button class="mini danger" onclick={() => onRemoveAccount(a.id)}>{t('退出登录')}</button>
+          </span>
         </div>
       {/each}
       <div class="srow">
@@ -157,36 +153,6 @@
       </div>
     </div>
 
-    <h4>{t('开发者选项')}</h4>
-    <div class="rows">
-      <div class="srow">
-        <b>{t('测试功能')}</b>
-        <label class="switch"><input type="checkbox" bind:checked={devOpen} /><i aria-hidden="true"></i></label>
-      </div>
-      {#if devOpen}
-        <div class="srow">
-          <b>{t('其他')}</b>
-          <em class="sel ver" onclick={tapVersion}>{VERSION}</em>
-        </div>
-        {#if keyRow}
-          <div class="srow">
-            <span class="lbl"><b>{t('离线模式')}</b><small>{t('输入密钥后启用')}</small></span>
-            <span class="ctl grow">
-              <input class="txt" type="password" bind:value={keyInput} spellcheck="false" aria-label={t('离线模式')}
-                onkeydown={(e) => e.key === 'Enter' && unlockOffline()} />
-              <button class="mini" onclick={unlockOffline}>{t('启用')}</button>
-            </span>
-          </div>
-          {#if keyErr}<p class="err">{t('密钥不正确')}</p>{/if}
-        {:else if settings.offlineEnabled}
-          <div class="srow">
-            <span class="lbl"><b>{t('离线模式')}</b></span>
-            <label class="switch"><input type="checkbox" bind:checked={settings.offlineEnabled} /><i aria-hidden="true"></i></label>
-          </div>
-        {/if}
-      {/if}
-    </div>
-
     <h4>{t('关于')}</h4>
     <div class="about">
       <img src="/icon.png" width="64" height="64" alt="" />
@@ -217,6 +183,5 @@
   .atxt b { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
   .atxt small { color: var(--text-dim); font-size: 12px; }
   em.sel { user-select: text; }
-  em.ver { cursor: default; user-select: none; }
   .mini.danger { color: var(--danger); }
 </style>

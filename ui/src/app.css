@@ -314,3 +314,10 @@ main { grid-area: main; padding: 4px 20px 20px 8px; min-height: 0; position: rel
 /* 所有会滚动的区域用同一种细滚动条 */
 * { scrollbar-width: thin; scrollbar-color: var(--fill-hover) transparent; }
 .versions .vlist, .md, .tpanel, .list { scroll-behavior: smooth; }
+
+/* 离线启动累计 5 次后的支持正版提示 */
+.genuine { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 28; display: flex; align-items: center; gap: 14px; padding: 11px 12px 11px 18px; border-radius: 14px; background: var(--pop); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22); animation: genuine-in 0.3s var(--ease); max-width: min(560px, calc(100% - 40px)); }
+.genuine p { font-size: 13px; line-height: 1.5; }
+.genuine .gx { width: 26px; height: 26px; border-radius: 8px; color: var(--text-dim); font-size: 18px; line-height: 1; flex: none; }
+.genuine .gx:hover { background: var(--fill); color: var(--text); }
+@keyframes genuine-in { from { opacity: 0; transform: translate(-50%, 8px); } }
