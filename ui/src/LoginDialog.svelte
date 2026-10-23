@@ -34,6 +34,9 @@
     remain = device.expiresIn;
     clearInterval(timer);
     timer = setInterval(() => { if (remain > 0) remain -= 1; }, 1000);
+    // 先把登录码放进剪贴板，再打开网页（打开浏览器会抢走焦点）
+    await copy();
+    if (closed) return;
     openPage();
     try {
       const info = await call('ms_login_finish', { device, settings: settings() });
@@ -61,13 +64,33 @@
   }
 
   async function copy() {
+    if (!device) return false;
+    const text = device.userCode;
+    let ok = false;
     try {
-      await navigator.clipboard.writeText(device.userCode);
-      copied = true;
-      setTimeout(() => (copied = false), 1500);
+      await navigator.clipboard.writeText(text);
+      ok = true;
     } catch {
-      // 剪贴板不可用就算了，用户可以手动抄
+      // WebView 里偶尔没有剪贴板权限，退回到选中文本再复制的方式
+      try {
+        const el = document.createElement('textarea');
+        el.value = text;
+        el.setAttribute('readonly', '');
+        el.style.position = 'fixed';
+        el.style.opacity = '0';
+        document.body.appendChild(el);
+        el.select();
+        ok = document.execCommand('copy');
+        el.remove();
+      } catch {
+        ok = false;
+      }
     }
+    if (ok) {
+      copied = true;
+      setTimeout(() => (copied = false), 2500);
+    }
+    return ok;
   }
 
   async function cancel() {
