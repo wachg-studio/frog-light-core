@@ -436,4 +436,5 @@ export default {
   '获取方法': 'Como obter',
   '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Registre um aplicativo no Azure e copie a "ID do aplicativo (cliente)"',
   '已内置，无需填写': 'Já incluído — não precisa preencher',
+  '这个应用还没有通过 Minecraft 的审核，审核通过前只能自己测试。提交入口见“获取方法”。': 'Este aplicativo ainda não passou pela revisão do Minecraft — até lá, só você pode testá-lo. O link de envio está em "Como obter".',
 };

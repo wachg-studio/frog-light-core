@@ -436,4 +436,5 @@ export default {
   '获取方法': 'Cách lấy',
   '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Đăng ký ứng dụng trong Azure rồi sao chép "ID ứng dụng (máy khách)"',
   '已内置，无需填写': 'Đã tích hợp sẵn — không cần nhập',
+  '这个应用还没有通过 Minecraft 的审核，审核通过前只能自己测试。提交入口见“获取方法”。': 'Ứng dụng này chưa qua kiểm duyệt của Minecraft — trước đó bạn chỉ có thể tự thử nghiệm. Liên kết gửi nằm trong "Cách lấy".',
 };

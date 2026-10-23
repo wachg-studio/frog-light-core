@@ -16,7 +16,9 @@
   let closed = false;
 
   const minutes = $derived(`${Math.floor(remain / 60)}:${String(remain % 60).padStart(2, '0')}`);
-  const needsClientId = $derived(error.includes('Client ID'));
+  // “Client ID 还没有通过 Minecraft 的审核”也包含“Client ID”，要先单独分出来
+  const needsReview = $derived(/审核|Invalid app registration|403/.test(error));
+  const needsClientId = $derived(error.includes('Client ID') && !needsReview);
 
   async function begin() {
     status = 'starting';
@@ -107,11 +109,15 @@
       <p class="dim center small url">{device.verificationUri}</p>
     {:else}
       <p class="err">{error}</p>
-      {#if needsClientId}
+      {#if needsReview}
+        <p class="dim small">{t('这个应用还没有通过 Minecraft 的审核，审核通过前只能自己测试。提交入口见“获取方法”。')}</p>
+      {:else if needsClientId}
         <p class="dim small">{t('正版登录需要一个在 Azure 注册并通过 Minecraft 审核的应用 Client ID。拿到后填到 设置 → 账号 里即可。')}</p>
       {/if}
       <div class="actions">
-        {#if needsClientId}
+        {#if needsReview}
+          {#if REPO_URL}<button class="primary" onclick={openClientIdDoc}>{t('获取方法')}</button>{/if}
+        {:else if needsClientId}
           <button class="primary" onclick={() => { onClose(); onSettings(); }}>{t('去设置')}</button>
           {#if REPO_URL}<button class="ghost" onclick={openClientIdDoc}>{t('获取方法')}</button>{/if}
         {:else}

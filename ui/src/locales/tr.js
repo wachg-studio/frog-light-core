@@ -436,4 +436,5 @@ export default {
   '获取方法': 'Nasıl alınır',
   '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Azure\'da bir uygulama kaydedin ve "Uygulama (istemci) kimliği"ni kopyalayın',
   '已内置，无需填写': 'Zaten yerleşik — doldurmanız gerekmez',
+  '这个应用还没有通过 Minecraft 的审核，审核通过前只能自己测试。提交入口见“获取方法”。': 'Bu uygulama henüz Minecraft incelemesinden geçmedi — o zamana kadar yalnızca kendiniz test edebilirsiniz. Gönderim bağlantısı "Nasıl alınır" bölümünde.',
 };
