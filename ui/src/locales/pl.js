@@ -435,4 +435,5 @@ export default {
   '答错了，再想想': 'To nie to — pomyśl jeszcze raz',
   '获取方法': 'Jak uzyskać',
   '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Zarejestruj aplikację w Azure i skopiuj jej „Identyfikator aplikacji (klienta)”',
+  '已内置，无需填写': 'Już wbudowany — nie trzeba go wpisywać',
 };

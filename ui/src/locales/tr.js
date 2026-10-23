@@ -435,4 +435,5 @@ export default {
   '答错了，再想想': 'Doğru değil — tekrar düşünün',
   '获取方法': 'Nasıl alınır',
   '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Azure\'da bir uygulama kaydedin ve "Uygulama (istemci) kimliği"ni kopyalayın',
+  '已内置，无需填写': 'Zaten yerleşik — doldurmanız gerekmez',
 };

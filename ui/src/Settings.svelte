@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { settings, GAME_LANGS } from './settings.svelte.js';
   import { t, LANGS } from './i18n.svelte.js';
   import { pickFolder, inTauri, call } from './api.js';
@@ -8,6 +9,12 @@
   import { VERSION, DEVELOPER, LICENSE, REPO_URL } from './about.js';
 
   let { panel = $bindable(null), defaultRoot = '', defaultDataDir = '', accounts = [], onSkin = () => {}, onLogin = () => {}, onRemoveAccount = () => {}, onOffline = () => {} } = $props();
+
+  // 发布版内置了 Client ID 时，玩家不需要看到这个输入框。
+  let builtinClientId = $state(false);
+  onMount(() => {
+    call('ms_client_id_builtin').then((v) => (builtinClientId = v === true)).catch(() => {});
+  });
 
   // 点“浏览”弹出系统资源管理器的文件夹选择框；取消则保持原值。
   async function browse(key, fallback) {
@@ -87,18 +94,24 @@
         <span class="lbl"><b>{t('微软正版账号')}</b><small>{t('登录后可以用正版身份进入服务器')}</small></span>
         <button class="mini" onclick={onLogin}>{t('添加账号')}</button>
       </div>
-      <div class="srow">
-        <span class="lbl">
-          <b>{t('微软登录 Client ID')}</b>
-          <small>{t('在 Azure 注册应用后复制“应用程序(客户端) ID”')}</small>
-        </span>
-        <span class="ctl grow">
-          <input class="txt" bind:value={settings.msClientId} placeholder="00000000-0000-0000-0000-000000000000" spellcheck="false" aria-label={t('微软登录 Client ID')} />
-          {#if REPO_URL}
-            <button class="mini" onclick={() => call('open_url', { url: `${REPO_URL}/blob/main/docs/client-id.md` })}>{t('获取方法')}</button>
-          {/if}
-        </span>
-      </div>
+      {#if builtinClientId}
+        <div class="srow">
+          <span class="lbl"><b>{t('微软登录 Client ID')}</b><small>{t('已内置，无需填写')}</small></span>
+        </div>
+      {:else}
+        <div class="srow">
+          <span class="lbl">
+            <b>{t('微软登录 Client ID')}</b>
+            <small>{t('在 Azure 注册应用后复制“应用程序(客户端) ID”')}</small>
+          </span>
+          <span class="ctl grow">
+            <input class="txt" bind:value={settings.msClientId} placeholder="00000000-0000-0000-0000-000000000000" spellcheck="false" aria-label={t('微软登录 Client ID')} />
+            {#if REPO_URL}
+              <button class="mini" onclick={() => call('open_url', { url: `${REPO_URL}/blob/main/docs/client-id.md` })}>{t('获取方法')}</button>
+            {/if}
+          </span>
+        </div>
+      {/if}
     </div>
 
     <h4>{t('存储位置')}</h4>

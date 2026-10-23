@@ -89,6 +89,12 @@ fn default_root() -> String {
     Config::default_root().to_string_lossy().into_owned()
 }
 
+/// 发布版是否已经内置了微软登录的 Client ID；内置了就隐藏设置里的输入框，玩家不用填。
+#[tauri::command]
+fn ms_client_id_builtin() -> bool {
+    flc_core::msa::DEFAULT_CLIENT_ID.map(|s| !s.trim().is_empty()).unwrap_or(false)
+}
+
 fn io_err(e: impl std::fmt::Display) -> String {
     format!("{e:#}")
 }
@@ -421,7 +427,7 @@ fn main() {
             let _ = app;
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![default_root, default_data_dir, list_instances, delete_instance, save_instance, set_instance_icon, list_mods, set_mod_enabled, remove_mod, add_mods, open_instance_dir, content_search, content_project, content_versions, content_install, modpack_install, modpack_import, content_installed, content_dependencies, content_check_updates, content_update, duplicate_instance, list_worlds, list_content, remove_content, open_url, cancel_task, ms_login_start, ms_login_finish, list_accounts, remove_account, account_skin, list_remote, list_loader_versions, install_game, launch_game, kill_game])
+        .invoke_handler(tauri::generate_handler![default_root, default_data_dir, ms_client_id_builtin, list_instances, delete_instance, save_instance, set_instance_icon, list_mods, set_mod_enabled, remove_mod, add_mods, open_instance_dir, content_search, content_project, content_versions, content_install, modpack_install, modpack_import, content_installed, content_dependencies, content_check_updates, content_update, duplicate_instance, list_worlds, list_content, remove_content, open_url, cancel_task, ms_login_start, ms_login_finish, list_accounts, remove_account, account_skin, list_remote, list_loader_versions, install_game, launch_game, kill_game])
         .run(tauri::generate_context!())
         .expect("启动 FLC 失败");
 }

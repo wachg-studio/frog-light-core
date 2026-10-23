@@ -107,6 +107,7 @@ let mockAccounts = [];
 
 function mockCall(cmd, args) {
   const inst = () => mockInstances.find((i) => i.id === args.id);
+  if (cmd === 'ms_client_id_builtin') return Promise.resolve(false);
   if (cmd === 'list_instances') return Promise.resolve(mockInstances.map((i) => ({ ...i, title: mockTitle(i) })));
   if (cmd === 'list_remote') return Promise.resolve(mockVersions());
   if (cmd === 'delete_instance') {

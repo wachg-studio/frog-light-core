@@ -435,4 +435,5 @@ export default {
   '答错了，再想想': 'Chưa đúng — hãy nghĩ lại',
   '获取方法': 'Cách lấy',
   '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Đăng ký ứng dụng trong Azure rồi sao chép "ID ứng dụng (máy khách)"',
+  '已内置，无需填写': 'Đã tích hợp sẵn — không cần nhập',
 };
