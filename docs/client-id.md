@@ -45,7 +45,14 @@ FLC_MS_CLIENT_ID=你的ID cargo build --release -p flc-app --features tauri/cust
 
 ## 还需要通过 Minecraft 服务审核
 
-新注册的应用默认没有 Minecraft 的访问权限。登录最后一步会返回 403，界面会提示“Client ID 还没有通过 Minecraft 的审核”。审核入口搜索 “Minecraft Java Edition app registration review”，按微软的表单提交。审核通过前，应用只能自己测试。
+新注册的应用默认没有 Minecraft 的访问权限。登录最后一步会返回 403（`Invalid app registration`），界面会提示“Client ID 还没有通过 Minecraft 的审核”。Azure 应用注册和 Minecraft 的 AppID 审核是两件独立的事，后者必须单独提交：
+
+- 官方说明：[Minecraft Java Edition API Application Approval Process](https://help.minecraft.net/hc/en-us/articles/16254801392141)
+- 提交表单：[AppID Review form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR-ajEQ1td1ROpz00KtS8Gd5UNVpPTkVLNFVROVQxNkdRMEtXVjNQQjdXVC4u)
+
+表单要填：联系人邮箱（要和 Azure 账户一致）、应用名称（不能包含 Mojang、Minecraft、Microsoft、Live、Xbox、Discord、Hypixel）、应用程序(客户端) ID、目录(租户) ID、网站，以及对 API 用途的说明，并确认已阅读 EULA 和使用指南。审核大致每周一批，重复提交不会加快。
+
+审核通过前，应用只能自己测试；通过后所有用户都能直接用内置的 Client ID 登录，不需要任何配置。
 
 ## 常见错误
 
