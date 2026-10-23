@@ -433,4 +433,6 @@ export default {
   '一直用离线模式就够了': 'Çevrimdışı modu kullanmaya devam etmek',
   '我同意遵守 Minecraft 最终用户许可协议，不把离线模式用于盗版、商业用途或传播游戏文件。': 'Minecraft Son Kullanıcı Lisans Sözleşmesine uymayı ve çevrimdışı modu korsanlık, ticari amaçlar veya oyun dosyalarını dağıtmak için kullanmamayı kabul ediyorum.',
   '答错了，再想想': 'Doğru değil — tekrar düşünün',
+  '获取方法': 'Nasıl alınır',
+  '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Azure\'da bir uygulama kaydedin ve "Uygulama (istemci) kimliği"ni kopyalayın',
 };

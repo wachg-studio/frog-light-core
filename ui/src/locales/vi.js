@@ -433,4 +433,6 @@ export default {
   '一直用离线模式就够了': 'Tiếp tục dùng chế độ ngoại tuyến',
   '我同意遵守 Minecraft 最终用户许可协议，不把离线模式用于盗版、商业用途或传播游戏文件。': 'Tôi đồng ý tuân thủ Thỏa thuận giấy phép người dùng cuối của Minecraft và không dùng chế độ ngoại tuyến cho mục đích vi phạm bản quyền, thương mại hoặc phát tán tệp game.',
   '答错了，再想想': 'Chưa đúng — hãy nghĩ lại',
+  '获取方法': 'Cách lấy',
+  '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Đăng ký ứng dụng trong Azure rồi sao chép "ID ứng dụng (máy khách)"',
 };

@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import { call, inTauri, CANCELLED } from './api.js';
   import { t } from './i18n.svelte.js';
+  import { REPO_URL } from './about.js';
 
   // 微软账号登录（设备码流程）：显示一个登录码，用户在浏览器里打开微软的页面输入，这里等它完成。
   let { settings, onDone, onClose, onSettings } = $props();
@@ -48,6 +49,13 @@
     if (!device) return;
     if (inTauri) call('open_url', { url: device.verificationUri }).catch(() => {});
     else window.open(device.verificationUri, '_blank', 'noopener');
+  }
+
+  function openClientIdDoc() {
+    if (!REPO_URL) return;
+    const url = `${REPO_URL}/blob/main/docs/client-id.md`;
+    if (inTauri) call('open_url', { url }).catch(() => {});
+    else window.open(url, '_blank', 'noopener');
   }
 
   async function copy() {
@@ -103,7 +111,12 @@
         <p class="dim small">{t('正版登录需要一个在 Azure 注册并通过 Minecraft 审核的应用 Client ID。拿到后填到 设置 → 账号 里即可。')}</p>
       {/if}
       <div class="actions">
-        {#if needsClientId}<button class="primary" onclick={() => { onClose(); onSettings(); }}>{t('去设置')}</button>{:else}<button class="primary" onclick={begin}>{t('重试')}</button>{/if}
+        {#if needsClientId}
+          <button class="primary" onclick={() => { onClose(); onSettings(); }}>{t('去设置')}</button>
+          {#if REPO_URL}<button class="ghost" onclick={openClientIdDoc}>{t('获取方法')}</button>{/if}
+        {:else}
+          <button class="primary" onclick={begin}>{t('重试')}</button>
+        {/if}
       </div>
     {/if}
 
@@ -125,6 +138,8 @@
   .actions { display: flex; justify-content: center; }
   .primary { height: 36px; padding: 0 24px; border-radius: 18px; background: var(--btn); color: var(--btn-text); font-size: 14px; font-weight: 600; transition: transform 0.2s var(--ease); }
   .primary:hover { transform: scale(1.04); }
+  .ghost { height: 36px; padding: 0 18px; border-radius: 18px; color: var(--text-dim); font-size: 13.5px; }
+  .ghost:hover { background: var(--fill); color: var(--text); }
   .dim { color: var(--text-dim); }
   .small { font-size: 12px; line-height: 1.5; }
   .center { display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; }

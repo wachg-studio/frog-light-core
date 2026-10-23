@@ -433,4 +433,6 @@ export default {
   '一直用离线模式就够了': 'Einfach weiter den Offline-Modus verwenden',
   '我同意遵守 Minecraft 最终用户许可协议，不把离线模式用于盗版、商业用途或传播游戏文件。': 'Ich verpflichte mich, die Minecraft-Endbenutzer-Lizenzvereinbarung einzuhalten, und nutze den Offline-Modus nicht für Raubkopien, kommerzielle Zwecke oder die Weitergabe von Spieldateien.',
   '答错了，再想想': 'Das ist nicht richtig – denk noch einmal nach',
+  '获取方法': 'So bekommst du sie',
+  '在 Azure 注册应用后复制“应用程序(客户端) ID”': 'Registriere eine App in Azure und kopiere die „Anwendungs-ID (Client-ID)“',
 };
